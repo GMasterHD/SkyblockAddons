@@ -2,6 +2,8 @@ package codes.biscuit.skyblockaddons.commands;
 
 import codes.biscuit.skyblockaddons.SkyblockAddons;
 import codes.biscuit.skyblockaddons.core.Message;
+import codes.biscuit.skyblockaddons.features.dungeonLootTracker.DungeonLoot;
+import codes.biscuit.skyblockaddons.features.dungeonLootTracker.DungeonLootTracker;
 import codes.biscuit.skyblockaddons.features.slayertracker.SlayerBoss;
 import codes.biscuit.skyblockaddons.features.slayertracker.SlayerDrop;
 import codes.biscuit.skyblockaddons.features.slayertracker.SlayerTracker;

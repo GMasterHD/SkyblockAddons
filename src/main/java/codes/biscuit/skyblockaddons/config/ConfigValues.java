@@ -62,6 +62,7 @@ public class ConfigValues {
     private MutableObject<EnumUtils.BackpackStyle> backpackStyle = new MutableObject<>(EnumUtils.BackpackStyle.GUI);
     private MutableObject<EnumUtils.PowerOrbDisplayStyle> powerOrbDisplayStyle = new MutableObject<>(EnumUtils.PowerOrbDisplayStyle.COMPACT);
     private MutableObject<EnumUtils.TextStyle> textStyle = new MutableObject<>(EnumUtils.TextStyle.STYLE_ONE);
+    private MutableObject<EnumUtils.DungeonFloor> dungeonFloor = new MutableObject<>(EnumUtils.DungeonFloor.AUTO);
     private Map<String, Set<Integer>> profileLockedSlots = new HashMap<>();
     @Getter private Set<Feature> chromaFeatures = EnumSet.noneOf(Feature.class);
     private MutableFloat chromaSpeed = new MutableFloat(0.19354838F); // 2.0
@@ -72,6 +73,7 @@ public class ConfigValues {
     private MutableObject<DiscordStatus> discordAutoDefault = new MutableObject<>(DiscordStatus.NONE);
     @Getter private List<String> discordCustomStatuses = new ArrayList<>();
     @Getter private MutableFloat mapZoom = new MutableFloat(0.18478261F); // 1.3
+    @Getter @Setter private boolean dungeonLootOnlyInDungeons = true;
 
     public ConfigValues(File settingsConfigFile) {
         this.settingsConfigFile = settingsConfigFile;
@@ -967,5 +969,13 @@ public class ConfigValues {
         }
 
         return discordCustomStatuses.set(statusEntry.getId(), text);
+    }
+    
+    public EnumUtils.DungeonFloor getDungeonFloor() {
+        return dungeonFloor.getValue();
+    }
+    
+    public void setDungeonFloor(EnumUtils.DungeonFloor dungeonFloor) {
+        this.dungeonFloor.setValue(dungeonFloor);
     }
 }

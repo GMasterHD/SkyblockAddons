@@ -142,6 +142,33 @@ public class EnumUtils {
             return values()[nextType];
         }
     }
+    
+    public enum DungeonFloor {
+        AUTO(Message.DUNGEON_LOOT_TRACKER_AUTO),
+        F1(Message.DUNGEON_LOOT_TRACKER_F1),
+        F2(Message.DUNGEON_LOOT_TRACKER_F2),
+        F3(Message.DUNGEON_LOOT_TRACKER_F3),
+        F4(Message.DUNGEON_LOOT_TRACKER_F4),
+        F5(Message.DUNGEON_LOOT_TRACKER_F5);
+    
+        private Message message;
+    
+        DungeonFloor(Message message) {
+            this.message = message;
+        }
+    
+        public String getMessage() {
+            return message.getMessage();
+        }
+    
+        public DungeonFloor getNextType() {
+            int nextType = ordinal() + 1;
+            if (nextType > values().length - 1) {
+                nextType = 0;
+            }
+            return values()[nextType];
+        }
+    }
 
     /** Different detection methods of the magma boss are more accurate than others, display how accurate the time is. */
     @Getter
@@ -216,7 +243,9 @@ public class EnumUtils {
         HIDE_WHEN_NOT_IN_SPIDERS_DEN(SETTING_HIDE_WHEN_NOT_IN_SPIDERS_DEN, 134),
         HIDE_WHEN_NOT_IN_CASTLE(SETTING_HIDE_WHEN_NOT_IN_CASTLE, 135),
         ENABLE_PERSONAL_COMPACTOR_PREVIEW(SETTING_SHOW_PERSONAL_COMPACTOR_PREVIEW, 110),
-
+        DUNGEON_LOOT_TRACKER_FLOOR(SETTING_DUNGEON_LOOT_TRACKER_FLOOR, 114),
+        DUNGEON_LOOT_ONLY_IN_DUNGEONS(SETTING_DUNGEON_LOOT_ONLY_IN_DUNGEONS, 114),
+        
         DISCORD_RP_STATE(null, 0),
         DISCORD_RP_DETAILS(null, 0),
         ;
@@ -266,8 +295,9 @@ public class EnumUtils {
                  Feature.SHOW_ITEM_DUNGEON_FLOOR, Feature.SHOW_BASE_STAT_BOOST_PERCENTAGE,  Feature.SHOW_RARITY_UPGRADED, Feature.REVENANT_SLAYER_TRACKER,
                 Feature.TARANTULA_SLAYER_TRACKER, Feature.SVEN_SLAYER_TRACKER, Feature.DRAGON_STATS_TRACKER, Feature.SHOW_PERSONAL_COMPACTOR_PREVIEW),
         IHDEVELOPER("iHDeveloper", "github.com/iHDeveloper", Feature.SHOW_DUNGEON_MILESTONE, Feature.DUNGEONS_COLLECTED_ESSENCES_DISPLAY, Feature.SHOW_DUNGEON_TEAMMATE_NAME_OVERLAY),
-        TIRELESS_TRAVELER("TirelessTraveler", "github.com/ILikePlayingGames", Feature.DUNGEON_DEATH_COUNTER);
-
+        TIRELESS_TRAVELER("TirelessTraveler", "github.com/ILikePlayingGames", Feature.DUNGEON_DEATH_COUNTER),
+        GMASTERHD("GMasterHD", "github.com/gmasterhd", Feature.DUNGEON_LOOT_TRACKER);
+        
         private Set<Feature> features;
         private String author;
         private String url;
@@ -338,7 +368,8 @@ public class EnumUtils {
         TAB_EFFECT_TIMERS,
         DUNGEONS_MAP,
         SLAYER_TRACKERS,
-        DRAGON_STATS_TRACKER
+        DRAGON_STATS_TRACKER,
+        DUNGEON_LOOT_TRACKER
     }
 
     @Getter

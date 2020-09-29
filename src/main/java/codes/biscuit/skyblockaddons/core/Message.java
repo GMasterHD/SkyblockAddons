@@ -158,6 +158,8 @@ public enum Message {
     SETTING_DUNGEON_DEATH_COUNTER(MessageObject.SETTING, "dungeonDeathCounter"),
     SETTING_SHOW_PERSONAL_COMPACTOR_PREVIEW(MessageObject.SETTING, "showPersonalCompactorPreview"),
     SETTING_SHOW_DUNGEON_TEAMMATE_NAME_OVERLAY(MessageObject.SETTING, "dungeonsTeammateNameOverlay"),
+    SETTING_DUNGEON_LOOT_TRACKER_FLOOR(MessageObject.SETTING, "dungeonLootTrackerFloor"),
+    SETTING_DUNGEON_LOOT_ONLY_IN_DUNGEONS(MessageObject.SETTING, "dungeonLootTrackerOnlyInDungeon"),
 
     BACKPACK_STYLE_REGULAR(MessageObject.BACKPACK_STYLE, "regular"),
     BACKPACK_STYLE_COMPACT(MessageObject.BACKPACK_STYLE, "compact"),
@@ -249,6 +251,13 @@ public enum Message {
 
     CHROMA_MODE_ALL_THE_SAME(MessageObject.CHROMA_MODE, "allTheSame"),
     CHROME_MODE_FADE(MessageObject.CHROMA_MODE, "fade"),
+    
+    DUNGEON_LOOT_TRACKER_AUTO(MessageObject.DUNGEON_LOOT_TRACKER, "auto"),
+    DUNGEON_LOOT_TRACKER_F1(MessageObject.DUNGEON_LOOT_TRACKER, "f1"),
+    DUNGEON_LOOT_TRACKER_F2(MessageObject.DUNGEON_LOOT_TRACKER, "f2"),
+    DUNGEON_LOOT_TRACKER_F3(MessageObject.DUNGEON_LOOT_TRACKER, "f3"),
+    DUNGEON_LOOT_TRACKER_F4(MessageObject.DUNGEON_LOOT_TRACKER, "f4"),
+    DUNGEON_LOOT_TRACKER_F5(MessageObject.DUNGEON_LOOT_TRACKER, "f5"),
 
     DISCORD_STATUS_NONE_TITLE(MessageObject.DISCORD_STATUS, "titleNone"),
     DISCORD_STATUS_NONE_DESCRIPTION(MessageObject.DISCORD_STATUS, "descriptionNone"),
@@ -381,6 +390,8 @@ public enum Message {
                     text = text.replace("%radius%", variables[0]);
                 } else if (this == Message.MESSAGE_EFFECTS_ACTIVE) {
                     text = text.replace("%number%", variables[0]);
+                } else if (this == Message.SETTING_DUNGEON_LOOT_TRACKER_FLOOR) {
+                    text = text.replace("%floor%", main.getConfigValues().getDungeonFloor().getMessage());
                 }
             }
             if (text != null && (main.getConfigValues().getLanguage() == Language.HEBREW || main.getConfigValues().getLanguage() == Language.ARABIC) && !Minecraft.getMinecraft().fontRendererObj.getBidiFlag()) {
@@ -416,7 +427,8 @@ public enum Message {
         CHROMA_MODE("settings.chromaModes"),
         DISCORD_STATUS("discordStatus"),
         KEYBINDINGS("keyBindings"),
-        COMMAND_USAGE("commandUsage");
+        COMMAND_USAGE("commandUsage"),
+        DUNGEON_LOOT_TRACKER("settings.dungeonFloors");
 
         private List<String> path;
 
@@ -424,5 +436,4 @@ public enum Message {
             this.path = new LinkedList<>(Arrays.asList(path.split(Pattern.quote("."))));
         }
     }
-
 }

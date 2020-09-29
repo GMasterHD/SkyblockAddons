@@ -6,6 +6,10 @@ import codes.biscuit.skyblockaddons.features.*;
 import codes.biscuit.skyblockaddons.features.dragontracker.DragonTracker;
 import codes.biscuit.skyblockaddons.features.dragontracker.DragonType;
 import codes.biscuit.skyblockaddons.features.dragontracker.DragonsSince;
+import codes.biscuit.skyblockaddons.features.dungeonLootTracker.DungeonFloor;
+import codes.biscuit.skyblockaddons.features.dungeonLootTracker.DungeonLoot;
+import codes.biscuit.skyblockaddons.features.dungeonLootTracker.DungeonLootTracker;
+import codes.biscuit.skyblockaddons.features.dungeonLootTracker.Loot;
 import codes.biscuit.skyblockaddons.features.healingcircle.HealingCircle;
 import codes.biscuit.skyblockaddons.features.healingcircle.HealingCircleParticle;
 import codes.biscuit.skyblockaddons.features.powerorbs.PowerOrb;
@@ -30,17 +34,21 @@ import com.google.common.collect.Lists;
 import lombok.Getter;
 import lombok.Setter;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityOtherPlayerMP;
+import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.gui.Gui;
 import net.minecraft.client.gui.MapItemRenderer;
 import net.minecraft.client.gui.ScaledResolution;
 import net.minecraft.client.renderer.*;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.client.renderer.vertex.DefaultVertexFormats;
+import net.minecraft.client.resources.model.ModelResourceLocation;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityLivingBase;
 import net.minecraft.entity.item.EntityArmorStand;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.monster.EntityCaveSpider;
+import net.minecraft.entity.monster.EntityGhast;
 import net.minecraft.entity.monster.EntitySpider;
 import net.minecraft.entity.monster.EntityZombie;
 import net.minecraft.entity.passive.EntityWolf;
@@ -104,7 +112,7 @@ public class RenderListener {
     private static EntitySpider tarantula;
     private static EntityCaveSpider caveSpider;
     private static EntityWolf sven;
-
+    
     private SkyblockAddons main = SkyblockAddons.getInstance();
 
     @Getter @Setter private boolean predictHealth;
@@ -127,6 +135,8 @@ public class RenderListener {
     private int guiPageToOpen = 1;
     private EnumUtils.GuiTab guiTabToOpen = EnumUtils.GuiTab.MAIN;
     private Feature guiFeatureToOpen;
+    
+    private final float DLT_RATIO_ICON = 0.41796875f;
 
     /**
      * Render overlays and warnings for clients without labymod.
@@ -1190,30 +1200,30 @@ public class RenderListener {
         boolean colorByRarity;
         boolean textMode;
         SlayerBoss slayerBoss;
-        if (feature == Feature.REVENANT_SLAYER_TRACKER) {
-            if (buttonLocation == null && main.getConfigValues().isEnabled(Feature.HIDE_WHEN_NOT_IN_CRYPTS) && main.getUtils().getSlayerQuest() != EnumUtils.SlayerQuest.REVENANT_HORROR &&
+        if(feature == Feature.REVENANT_SLAYER_TRACKER) {
+            if(buttonLocation == null && main.getConfigValues().isEnabled(Feature.HIDE_WHEN_NOT_IN_CRYPTS) && main.getUtils().getSlayerQuest() != EnumUtils.SlayerQuest.REVENANT_HORROR &&
                     main.getUtils().getLocation() != Location.GRAVEYARD && main.getUtils().getLocation() != Location.COAL_MINE) {
                 return;
             }
-
+    
             colorByRarity = main.getConfigValues().isEnabled(Feature.REVENANT_COLOR_BY_RARITY);
             textMode = main.getConfigValues().isEnabled(Feature.REVENANT_TEXT_MODE);
             slayerBoss = SlayerBoss.REVENANT;
-        } else if (feature == Feature.TARANTULA_SLAYER_TRACKER) {
-            if (buttonLocation == null && main.getConfigValues().isEnabled(Feature.HIDE_WHEN_NOT_IN_SPIDERS_DEN) &&
+        } else if(feature == Feature.TARANTULA_SLAYER_TRACKER) {
+            if(buttonLocation == null && main.getConfigValues().isEnabled(Feature.HIDE_WHEN_NOT_IN_SPIDERS_DEN) &&
                     main.getUtils().getSlayerQuest() != EnumUtils.SlayerQuest.TARANTULA_BROODFATHER && main.getUtils().getLocation() != Location.SPIDERS_DEN) {
                 return;
             }
-
+    
             colorByRarity = main.getConfigValues().isEnabled(Feature.TARANTULA_COLOR_BY_RARITY);
             textMode = main.getConfigValues().isEnabled(Feature.TARANTULA_TEXT_MODE);
             slayerBoss = SlayerBoss.TARANTULA;
-        } else if (feature == Feature.SVEN_SLAYER_TRACKER) {
-            if (buttonLocation == null && main.getConfigValues().isEnabled(Feature.HIDE_WHEN_NOT_IN_CASTLE) &&
-            main.getUtils().getSlayerQuest() != EnumUtils.SlayerQuest.SVEN_PACKMASTER && main.getUtils().getLocation() != Location.RUINS) {
+        } else if(feature == Feature.SVEN_SLAYER_TRACKER) {
+            if(buttonLocation == null && main.getConfigValues().isEnabled(Feature.HIDE_WHEN_NOT_IN_CASTLE) &&
+                    main.getUtils().getSlayerQuest() != EnumUtils.SlayerQuest.SVEN_PACKMASTER && main.getUtils().getLocation() != Location.RUINS) {
                 return;
             }
-
+    
             colorByRarity = main.getConfigValues().isEnabled(Feature.SVEN_COLOR_BY_RARITY);
             textMode = main.getConfigValues().isEnabled(Feature.SVEN_TEXT_MODE);
             slayerBoss = SlayerBoss.SVEN;
@@ -1425,7 +1435,226 @@ public class RenderListener {
             GlStateManager.enableDepth();
         }
     }
-
+    
+    public void drawDungeonTracker(Minecraft mc, float scale, ButtonLocation buttonLocation) {
+        int floor = -1;
+        if(SkyblockAddons.getInstance().getConfigValues().getDungeonFloor() == EnumUtils.DungeonFloor.AUTO) {
+            floor = DungeonLootTracker.getInstance().getLastFloor();
+        } else if(SkyblockAddons.getInstance().getConfigValues().getDungeonFloor() == EnumUtils.DungeonFloor.F1) {
+            floor = 0;
+        } else if(SkyblockAddons.getInstance().getConfigValues().getDungeonFloor() == EnumUtils.DungeonFloor.F2) {
+            floor = 1;
+        } else if(SkyblockAddons.getInstance().getConfigValues().getDungeonFloor() == EnumUtils.DungeonFloor.F3) {
+            floor = 2;
+        } else if(SkyblockAddons.getInstance().getConfigValues().getDungeonFloor() == EnumUtils.DungeonFloor.F4) {
+            floor = 3;
+        } else if(SkyblockAddons.getInstance().getConfigValues().getDungeonFloor() == EnumUtils.DungeonFloor.F5) {
+            floor = 4;
+        }
+    
+        int iconSize = 48;
+    
+        int width = (int) (iconSize * DLT_RATIO_ICON);
+        int height = iconSize;
+    
+        float x = main.getConfigValues().getActualX(Feature.DUNGEON_LOOT_TRACKER);
+        float y = main.getConfigValues().getActualY(Feature.DUNGEON_LOOT_TRACKER);
+    
+        x = transformXY(x, width, scale);
+        y = transformXY(y, height, scale);
+    
+        if(floor == 0) {
+            mc.getTextureManager().bindTexture(new ResourceLocation("skyblockaddons", "icons/bonzo.png"));
+            main.getUtils().drawModalRectWithCustomSizedTexture(x, y, 0, 0, iconSize, iconSize, iconSize, iconSize);
+    
+            // Render Boos with rewards
+            float currentX = 0;
+            float currentY = y;
+            for(DungeonLoot dl : DungeonFloor.F1.getDungeonLoot()) {
+                renderItem(dl.getItemStack(), x + 4 + width + currentX, currentY);
+        
+                GlStateManager.disableDepth();
+                GlStateManager.color(1, 1, 1, 1);
+        
+                int count = -1;
+                for(Loot l: DungeonLootTracker.getInstance().getF1().getLoot()) {
+                    if(l.getId().equalsIgnoreCase(dl.getSkyBlockID())) {
+                        count = l.getCount();
+                    }
+                }
+        
+                String countString = count + "";
+                if(count > 0) {
+                    main.getUtils().drawTextWithStyle(countString, x + 22 + width + currentX - mc.fontRendererObj.getStringWidth(countString), currentY + 10, dl.getRarity().getColorCode().getRGB());
+                } else {
+                    main.getUtils().drawTextWithStyle("0", x + 22 + width + currentX - mc.fontRendererObj.getStringWidth("0"), currentY + 10, dl.getRarity().getColorCode().getRGB());
+                }
+                currentX += 18;
+        
+                if(currentX > 60) {
+                    currentX = 0;
+                    currentY += 18;
+                }
+            }
+            GlStateManager.color(1, 1, 1, 1);
+            String count = DungeonLootTracker.getInstance().getF1().getKills() + "";
+            main.getUtils().drawTextWithStyle(count, x + 19 - mc.fontRendererObj.getStringWidth(count), y + 43, main.getConfigValues().getColor(Feature.DUNGEON_LOOT_TRACKER).getRGB());
+            GlStateManager.enableDepth();
+        } else if(floor == 1) {
+            mc.getTextureManager().bindTexture(new ResourceLocation("skyblockaddons", "icons/scarf.png"));
+            main.getUtils().drawModalRectWithCustomSizedTexture(x, y, 0, 0, iconSize, iconSize, iconSize, iconSize);
+    
+            // Render Boos with rewards
+            float currentX = 0;
+            float currentY = y;
+            for(DungeonLoot dl : DungeonFloor.F2.getDungeonLoot()) {
+                renderItem(dl.getItemStack(), x + 4 + width + currentX, currentY);
+        
+                GlStateManager.disableDepth();
+                GlStateManager.color(1, 1, 1, 1);
+        
+                int count = -1;
+                for(Loot l: DungeonLootTracker.getInstance().getF2().getLoot()) {
+                    if(l.getId().equalsIgnoreCase(dl.getSkyBlockID())) {
+                        count = l.getCount();
+                    }
+                }
+        
+                String countString = count + "";
+                if(count > 0) {
+                    main.getUtils().drawTextWithStyle(countString, x + 22 + width + currentX - mc.fontRendererObj.getStringWidth(countString), currentY + 10, dl.getRarity().getColorCode().getRGB());
+                } else {
+                    main.getUtils().drawTextWithStyle("0", x + 22 + width + currentX - mc.fontRendererObj.getStringWidth("0"), currentY + 10, dl.getRarity().getColorCode().getRGB());
+                }
+                currentX += 18;
+        
+                if(currentX > 60) {
+                    currentX = 0;
+                    currentY += 18;
+                }
+            }
+            GlStateManager.color(1, 1, 1, 1);
+            String count = DungeonLootTracker.getInstance().getF2().getKills() + "";
+            main.getUtils().drawTextWithStyle(count, x + 19 - mc.fontRendererObj.getStringWidth(count), y + 43, main.getConfigValues().getColor(Feature.DUNGEON_LOOT_TRACKER).getRGB());
+            GlStateManager.enableDepth();
+        } else if(floor == 2) {
+            mc.getTextureManager().bindTexture(new ResourceLocation("skyblockaddons", "icons/the_professor.png"));
+            main.getUtils().drawModalRectWithCustomSizedTexture(x, y, 0, 0, iconSize, iconSize, iconSize, iconSize);
+    
+            // Render Boos with rewards
+            float currentX = 0;
+            float currentY = y;
+            for(DungeonLoot dl : DungeonFloor.F3.getDungeonLoot()) {
+                renderItem(dl.getItemStack(), x + 4 + width + currentX, currentY);
+        
+                GlStateManager.disableDepth();
+                GlStateManager.color(1, 1, 1, 1);
+        
+                int count = -1;
+                for(Loot l: DungeonLootTracker.getInstance().getF3().getLoot()) {
+                    if(l.getId().equalsIgnoreCase(dl.getSkyBlockID())) {
+                        count = l.getCount();
+                    }
+                }
+        
+                String countString = count + "";
+                if(count > 0) {
+                    main.getUtils().drawTextWithStyle(countString, x + 22 + width + currentX - mc.fontRendererObj.getStringWidth(countString), currentY + 10, dl.getRarity().getColorCode().getRGB());
+                } else {
+                    main.getUtils().drawTextWithStyle("0", x + 22 + width + currentX - mc.fontRendererObj.getStringWidth("0"), currentY + 10, dl.getRarity().getColorCode().getRGB());
+                }
+                currentX += 18;
+        
+                if(currentX > 60) {
+                    currentX = 0;
+                    currentY += 18;
+                }
+            }
+            GlStateManager.color(1, 1, 1, 1);
+            String count = DungeonLootTracker.getInstance().getF3().getKills() + "";
+            main.getUtils().drawTextWithStyle(count, x + 19 - mc.fontRendererObj.getStringWidth(count), y + 43, main.getConfigValues().getColor(Feature.DUNGEON_LOOT_TRACKER).getRGB());
+            GlStateManager.enableDepth();
+        } else if(floor == 3) {
+            mc.getTextureManager().bindTexture(new ResourceLocation("skyblockaddons", "icons/thorn.png"));
+            main.getUtils().drawModalRectWithCustomSizedTexture(x, y, 0, 0, iconSize, iconSize, iconSize, iconSize);
+    
+            // Render Boos with rewards
+            float currentX = 0;
+            float currentY = y;
+            for(DungeonLoot dl : DungeonFloor.F4.getDungeonLoot()) {
+                renderItem(dl.getItemStack(), x + 4 + width + currentX, currentY);
+        
+                GlStateManager.disableDepth();
+                GlStateManager.color(1, 1, 1, 1);
+        
+                int count = -1;
+                for(Loot l: DungeonLootTracker.getInstance().getF4().getLoot()) {
+                    if(l.getId().equalsIgnoreCase(dl.getSkyBlockID())) {
+                        count = l.getCount();
+                    }
+                }
+        
+                String countString = count + "";
+                if(count > 0) {
+                    main.getUtils().drawTextWithStyle(countString, x + 22 + width + currentX - mc.fontRendererObj.getStringWidth(countString), currentY + 10, dl.getRarity().getColorCode().getRGB());
+                } else {
+                    main.getUtils().drawTextWithStyle("0", x + 22 + width + currentX - mc.fontRendererObj.getStringWidth("0"), currentY + 10, dl.getRarity().getColorCode().getRGB());
+                }
+                currentX += 18;
+        
+                if(currentX > 60) {
+                    currentX = 0;
+                    currentY += 18;
+                }
+            }
+            GlStateManager.color(1, 1, 1, 1);
+            String count = DungeonLootTracker.getInstance().getF4().getKills() + "";
+            main.getUtils().drawTextWithStyle(count, x + 23 - mc.fontRendererObj.getStringWidth(count), y + 20, main.getConfigValues().getColor(Feature.DUNGEON_LOOT_TRACKER).getRGB());
+            GlStateManager.enableDepth();
+        } else if(floor == 4) {
+            mc.getTextureManager().bindTexture(new ResourceLocation("skyblockaddons", "icons/livid.png"));
+            main.getUtils().drawModalRectWithCustomSizedTexture(x, y, 0, 0, iconSize, iconSize, iconSize, iconSize);
+    
+            // Render Boos with rewards
+            float currentX = 0;
+            float currentY = y;
+            for(DungeonLoot dl : DungeonFloor.F5.getDungeonLoot()) {
+                renderItem(dl.getItemStack(), x + 4 + width + currentX, currentY);
+        
+                GlStateManager.disableDepth();
+                GlStateManager.color(1, 1, 1, 1);
+        
+                int count = -1;
+                for(Loot l: DungeonLootTracker.getInstance().getF5().getLoot()) {
+                    if(l.getId().equalsIgnoreCase(dl.getSkyBlockID())) {
+                        count = l.getCount();
+                    }
+                }
+        
+                String countString = count + "";
+                if(count > 0) {
+                    main.getUtils().drawTextWithStyle(countString, x + 22 + width + currentX - mc.fontRendererObj.getStringWidth(countString), currentY + 10, dl.getRarity().getColorCode().getRGB());
+                } else {
+                    main.getUtils().drawTextWithStyle("0", x + 22 + width + currentX - mc.fontRendererObj.getStringWidth("0"), currentY + 10, dl.getRarity().getColorCode().getRGB());
+                }
+                currentX += 18;
+        
+                if(currentX > 60) {
+                    currentX = 0;
+                    currentY += 18;
+                }
+            }
+            GlStateManager.color(1, 1, 1, 1);
+            String count = DungeonLootTracker.getInstance().getF5().getKills() + "";
+            main.getUtils().drawTextWithStyle(count, x + 19 - mc.fontRendererObj.getStringWidth(count), y + 43, main.getConfigValues().getColor(Feature.DUNGEON_LOOT_TRACKER).getRGB());
+            GlStateManager.enableDepth();
+        }
+        
+        if(buttonLocation != null) {
+            buttonLocation.checkHoveredAndDrawBox(x, x + width + 72, y, y + height, scale);
+        }
+    }
+    
     public void drawDragonTrackers(Minecraft mc, float scale, ButtonLocation buttonLocation) {
         if (main.getConfigValues().isEnabled(Feature.DRAGON_STATS_TRACKER_NEST_ONLY) && main.getUtils().getLocation() != Location.DRAGONS_NEST && buttonLocation == null) {
             return;

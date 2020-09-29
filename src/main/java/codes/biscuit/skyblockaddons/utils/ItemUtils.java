@@ -498,10 +498,10 @@ public class ItemUtils {
         if (skyblockID != null) {
             setItemStackSkyblockID(stack, skyblockID);
         }
-
+        
         return stack;
     }
-
+    
     public static void setItemStackSkyblockID(ItemStack itemStack, String skyblockID) {
         NBTTagCompound extraAttributes = new NBTTagCompound();
         extraAttributes.setString("id", skyblockID);

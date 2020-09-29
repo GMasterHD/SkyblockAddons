@@ -12,6 +12,8 @@ import codes.biscuit.skyblockaddons.features.backpacks.ContainerPreview;
 import codes.biscuit.skyblockaddons.features.backpacks.BackpackManager;
 import codes.biscuit.skyblockaddons.features.dragontracker.DragonTracker;
 import codes.biscuit.skyblockaddons.features.cooldowns.CooldownManager;
+import codes.biscuit.skyblockaddons.features.dungeonLootTracker.DungeonLoot;
+import codes.biscuit.skyblockaddons.features.dungeonLootTracker.DungeonLootTracker;
 import codes.biscuit.skyblockaddons.features.enchantedItemBlacklist.EnchantedItemPlacementBlocker;
 import codes.biscuit.skyblockaddons.features.powerorbs.PowerOrbManager;
 import codes.biscuit.skyblockaddons.features.slayertracker.SlayerTracker;
@@ -141,6 +143,8 @@ public class PlayerListener {
     private final SkyblockAddons main = SkyblockAddons.getInstance();
     private final Logger logger = main.getLogger();
     private final ActionBarParser actionBarParser = new ActionBarParser();
+    
+    private int chatMessageSinceChestMessage = 10;
 
     /**
      * Reset all the timers and stuff when joining a new world.
@@ -379,6 +383,50 @@ public class PlayerListener {
                     if (matcher.matches()) {
                         main.getUtils().setProfileName(matcher.group(1));
                         APIManager.getInstance().pullInitialData();
+                    }
+                }
+            }
+            // Get if a floor has been completed successfully
+            if(unformattedText.contains("Bonzo") && unformattedText.contains("defeated") && !formattedText.contains(":")) {
+                DungeonLootTracker.getInstance().getF1().completed();
+                System.out.println("Bonzo defeated! (" + DungeonLootTracker.getInstance().getF1().getKills() + " times)");
+                DungeonLootTracker.getInstance().setLastFloor(0);
+                SkyblockAddons.getInstance().getPersistentValuesManager().saveValues();
+            } else if(unformattedText.contains("Scarf") && unformattedText.contains("defeated") && !formattedText.contains(":")) {
+                DungeonLootTracker.getInstance().getF2().completed();
+                System.out.println("Scarf defeated! (" + DungeonLootTracker.getInstance().getF2().getKills() + " times)");
+	            DungeonLootTracker.getInstance().setLastFloor(1);
+                SkyblockAddons.getInstance().getPersistentValuesManager().saveValues();
+            } else if(unformattedText.contains("Professor") && unformattedText.contains("defeated") && !formattedText.contains(":")) {
+                DungeonLootTracker.getInstance().getF3().completed();
+                System.out.println("The Professor defeated! (" + DungeonLootTracker.getInstance().getF3().getKills() + " times)");
+                DungeonLootTracker.getInstance().setLastFloor(2);
+                SkyblockAddons.getInstance().getPersistentValuesManager().saveValues();
+            } else if(unformattedText.contains("Thorn") && unformattedText.contains("defeated") && !formattedText.contains(":")) {
+                DungeonLootTracker.getInstance().getF4().completed();
+                System.out.println("Thorn defeated! (" + DungeonLootTracker.getInstance().getF4().getKills() + " times)");
+                DungeonLootTracker.getInstance().setLastFloor(3);
+                SkyblockAddons.getInstance().getPersistentValuesManager().saveValues();
+            } else if(unformattedText.contains("Livid") && unformattedText.contains("defeated") && !formattedText.contains(":")) {
+                DungeonLootTracker.getInstance().getF5().completed();
+                System.out.println("Livid defeated! (" + DungeonLootTracker.getInstance().getF5().getKills() + " times)");
+	            DungeonLootTracker.getInstance().setLastFloor(4);
+                SkyblockAddons.getInstance().getPersistentValuesManager().saveValues();
+            }
+    
+            // Get Dungeon Reward
+            // If a chest has been opened
+            if(unformattedText.contains("Chest Reward") && !formattedText.contains(":")) {
+                // We are listening to the next 10 chat messages for the reward
+                chatMessageSinceChestMessage = -1;
+            }
+            // If this message could be a dungeon reward we add the counter
+            if(chatMessageSinceChestMessage < 10) {
+                chatMessageSinceChestMessage++;
+                
+                for(DungeonLoot l: DungeonLootTracker.getDungeonLootList()) {
+                    if(unformattedText.toLowerCase().contains(l.getName().toLowerCase()) && !unformattedText.contains(":")) {
+                        DungeonLootTracker.getInstance().addLoot(0, l);
                     }
                 }
             }

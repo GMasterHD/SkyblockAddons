@@ -3,6 +3,7 @@ package codes.biscuit.skyblockaddons.config;
 import codes.biscuit.skyblockaddons.SkyblockAddons;
 import codes.biscuit.skyblockaddons.features.craftingpatterns.CraftingPattern;
 import codes.biscuit.skyblockaddons.features.dragontracker.DragonTracker;
+import codes.biscuit.skyblockaddons.features.dungeonLootTracker.DungeonLootTracker;
 import codes.biscuit.skyblockaddons.features.slayertracker.SlayerTracker;
 import lombok.Getter;
 import lombok.Setter;
@@ -29,6 +30,7 @@ public class PersistentValuesManager {
 
         private SlayerTracker slayerDrops = new SlayerTracker();
         private DragonTracker dragonTracker = new DragonTracker();
+        private DungeonLootTracker dungeonTracker = new DungeonLootTracker();
 
         private boolean blockCraftingIncompletePatterns = true;
         private CraftingPattern selectedCraftingPattern = CraftingPattern.FREE;

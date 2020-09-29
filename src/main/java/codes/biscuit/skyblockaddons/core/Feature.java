@@ -149,7 +149,7 @@ public enum Feature {
 
     DRAGON_STATS_TRACKER(125, Message.SETTING_DRAGON_STATS_TRACKER, new GuiFeatureData(EnumUtils.DrawType.DRAGON_STATS_TRACKER, ColorCode.WHITE), true, EnumUtils.FeatureSetting.COLOUR_BY_RARITY, EnumUtils.FeatureSetting.DRAGONS_NEST_ONLY),
     DRAGON_STATS_TRACKER_COLOR_BY_RARITY(126, null, false),
-    DRAGON_STATS_TRACKER_TEXT_MODE(127, null, false),
+    DRAGON_STATS_TRACKER_TEXT_MODE(127, null, true),
     DRAGON_STATS_TRACKER_NEST_ONLY(128, null, false),
 
     ZEALOT_COUNTER_NEST_ONLY(129, null, false),
@@ -168,7 +168,10 @@ public enum Feature {
     DOLPHIN_PET_TRACKER(139, "settings.dolphinPetTracker", new GuiFeatureData(EnumUtils.DrawType.TEXT, ColorCode.AQUA), true),
 
     SHOW_DUNGEON_TEAMMATE_NAME_OVERLAY(140, "settings.dungeonsTeammateNameOverlay", null, false),
-
+    
+    DUNGEON_LOOT_TRACKER(141, "settings.dungeonLootTracker", new GuiFeatureData(EnumUtils.DrawType.DUNGEON_LOOT_TRACKER, ColorCode.WHITE), false, EnumUtils.FeatureSetting.DUNGEON_LOOT_TRACKER_FLOOR, EnumUtils.FeatureSetting.DUNGEON_LOOT_ONLY_IN_DUNGEONS),
+    DUNGEON_LOOT_TRACKER_DUNGEONS_ONLY(142, null, false),
+    
     WARNING_TIME(-1, Message.SETTING_WARNING_DURATION, false),
 
     WARP_ADVANCED_MODE(-1, Message.SETTING_ADVANCED_MODE, true),
@@ -203,7 +206,7 @@ public enum Feature {
             SHOW_PLAYER_HEADS_ON_MAP, SHOW_GLOWING_ITEMS_ON_ISLAND, ACTIONS_UNTIL_NEXT_LEVEL, REVENANT_COLOR_BY_RARITY,
             TARANTULA_COLOR_BY_RARITY, SVEN_COLOR_BY_RARITY, REVENANT_TEXT_MODE, TARANTULA_TEXT_MODE, SVEN_TEXT_MODE,
             DRAGON_STATS_TRACKER_COLOR_BY_RARITY, HIDE_WHEN_NOT_IN_CASTLE, HIDE_WHEN_NOT_IN_SPIDERS_DEN,
-            HIDE_WHEN_NOT_IN_CRYPTS, SHOW_PERSONAL_COMPACTOR_PREVIEW);
+            HIDE_WHEN_NOT_IN_CRYPTS, SHOW_PERSONAL_COMPACTOR_PREVIEW, DUNGEON_LOOT_TRACKER_DUNGEONS_ONLY);
 
     /**
      * Features that are considered gui ones. This is used for examnple when saving the config to ensure that these features'
@@ -214,7 +217,7 @@ public enum Feature {
             SLAYER_INDICATOR, POWER_ORB_STATUS_DISPLAY, ZEALOT_COUNTER, TICKER_CHARGES_DISPLAY, TAB_EFFECT_TIMERS, SHOW_TOTAL_ZEALOT_COUNT, SHOW_SUMMONING_EYE_COUNT,
             SHOW_AVERAGE_ZEALOTS_PER_EYE, BIRCH_PARK_RAINMAKER_TIMER, COMBAT_TIMER_DISPLAY, ENDSTONE_PROTECTOR_DISPLAY, BAIT_LIST, DUNGEONS_MAP_DISPLAY, SHOW_DUNGEON_MILESTONE,
             DUNGEONS_COLLECTED_ESSENCES_DISPLAY, REVENANT_SLAYER_TRACKER, TARANTULA_SLAYER_TRACKER, SVEN_SLAYER_TRACKER, DRAGON_STATS_TRACKER, DUNGEON_DEATH_COUNTER,
-            ROCK_PET_TRACKER, DOLPHIN_PET_TRACKER));
+            ROCK_PET_TRACKER, DOLPHIN_PET_TRACKER, DUNGEON_LOOT_TRACKER));
 
     /**
      * These are features that are displayed separate, on the general tab.
@@ -324,6 +327,8 @@ public enum Feature {
                 main.getRenderListener().drawSlayerTrackers(this, mc, scale, buttonLocation);
             } else if(guiFeatureData.getDrawType() == EnumUtils.DrawType.DRAGON_STATS_TRACKER) {
                 main.getRenderListener().drawDragonTrackers(mc, scale, buttonLocation);
+            } else if(guiFeatureData.getDrawType() == EnumUtils.DrawType.DUNGEON_LOOT_TRACKER) {
+                main.getRenderListener().drawDungeonTracker(mc, scale, buttonLocation);
             }
         }
     }

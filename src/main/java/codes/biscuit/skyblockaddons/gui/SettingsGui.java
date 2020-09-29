@@ -224,6 +224,16 @@ public class SettingsGui extends GuiScreen {
                     mc.displayGuiScreen(new SettingsGui(feature, --page, lastPage, lastTab, settings));
                 }
             }
+        } else if (feature == Feature.DUNGEON_LOOT_TRACKER && abstractButton instanceof ButtonSolid) {
+            main.getConfigValues().setDungeonFloor(main.getConfigValues().getDungeonFloor().getNextType());
+            closingGui = true;
+            mc.displayGuiScreen(new SettingsGui(feature, page, lastPage, lastTab, settings));
+            closingGui = false;
+        } else if (feature == Feature.DUNGEON_LOOT_TRACKER_DUNGEONS_ONLY && abstractButton instanceof ButtonToggle) {
+            main.getConfigValues().setDungeonLootOnlyInDungeons(!main.getConfigValues().isDungeonLootOnlyInDungeons());
+            closingGui = true;
+            mc.displayGuiScreen(new SettingsGui(feature, page, lastPage, lastTab, settings));
+            closingGui = false;
         }
     }
 
@@ -430,6 +440,7 @@ public class SettingsGui extends GuiScreen {
 
             } else if (feature == Feature.DRAGON_STATS_TRACKER_TEXT_MODE) {
                 settingFeature = Feature.DRAGON_STATS_TRACKER_TEXT_MODE;
+                
             }
 
             buttonList.add(new ButtonToggleTitle(x, y, Message.SETTING_TEXT_MODE.getMessage(), main, settingFeature));
@@ -452,6 +463,10 @@ public class SettingsGui extends GuiScreen {
             }
 
             buttonList.add(new ButtonToggleTitle(x, y, setting.getMessage().getMessage(), main, settingFeature));
+        } else if (setting == EnumUtils.FeatureSetting.DUNGEON_LOOT_TRACKER_FLOOR) {
+            boxWidth = 140;
+            x = halfWidth - (boxWidth / 2);
+            buttonList.add(new ButtonSolid(x, y, 140, 20, Message.SETTING_DUNGEON_LOOT_TRACKER_FLOOR.getMessage(), main, feature));
         }
         else {
             boxWidth = 31; // Default size and stuff.
