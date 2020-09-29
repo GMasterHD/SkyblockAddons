@@ -171,6 +171,8 @@ public enum Feature {
     
     DUNGEON_LOOT_TRACKER(141, "settings.dungeonLootTracker", new GuiFeatureData(EnumUtils.DrawType.DUNGEON_LOOT_TRACKER, ColorCode.WHITE), false, EnumUtils.FeatureSetting.DUNGEON_LOOT_TRACKER_FLOOR),
 
+    HIDE_SPIRIT_SCEPTRE_MESSAGE(142, Message.SETTING_HIDE_SPIRIT_SCEPTRE_MESSAGE, false),
+    
     WARNING_TIME(-1, Message.SETTING_WARNING_DURATION, false),
 
     WARP_ADVANCED_MODE(-1, Message.SETTING_ADVANCED_MODE, true),

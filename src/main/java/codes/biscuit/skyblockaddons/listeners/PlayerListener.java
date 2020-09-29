@@ -430,6 +430,11 @@ public class PlayerListener {
                     }
                 }
             }
+            
+            // Hide Spirit Sceptre Message
+            if(unformattedText.startsWith("Your Bat Staff hit") && main.getConfigValues().isEnabled(Feature.HIDE_SPIRIT_SCEPTRE_MESSAGE)) {
+                e.setCanceled(true);
+            }
         }
     }
 

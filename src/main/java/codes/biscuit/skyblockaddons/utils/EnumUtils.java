@@ -295,7 +295,7 @@ public class EnumUtils {
                 Feature.TARANTULA_SLAYER_TRACKER, Feature.SVEN_SLAYER_TRACKER, Feature.DRAGON_STATS_TRACKER, Feature.SHOW_PERSONAL_COMPACTOR_PREVIEW),
         IHDEVELOPER("iHDeveloper", "github.com/iHDeveloper", Feature.SHOW_DUNGEON_MILESTONE, Feature.DUNGEONS_COLLECTED_ESSENCES_DISPLAY, Feature.SHOW_DUNGEON_TEAMMATE_NAME_OVERLAY),
         TIRELESS_TRAVELER("TirelessTraveler", "github.com/ILikePlayingGames", Feature.DUNGEON_DEATH_COUNTER),
-        GMASTERHD("GMasterHD", "github.com/gmasterhd", Feature.DUNGEON_LOOT_TRACKER);
+        GMASTERHD("GMasterHD", "github.com/gmasterhd", Feature.DUNGEON_LOOT_TRACKER, Feature.HIDE_SPIRIT_SCEPTRE_MESSAGE);
         
         private Set<Feature> features;
         private String author;

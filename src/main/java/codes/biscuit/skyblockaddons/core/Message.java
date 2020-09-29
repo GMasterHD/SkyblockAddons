@@ -159,7 +159,8 @@ public enum Message {
     SETTING_SHOW_PERSONAL_COMPACTOR_PREVIEW(MessageObject.SETTING, "showPersonalCompactorPreview"),
     SETTING_SHOW_DUNGEON_TEAMMATE_NAME_OVERLAY(MessageObject.SETTING, "dungeonsTeammateNameOverlay"),
     SETTING_DUNGEON_LOOT_TRACKER_FLOOR(MessageObject.SETTING, "dungeonLootTrackerFloor"),
-
+    SETTING_HIDE_SPIRIT_SCEPTRE_MESSAGE(MessageObject.SETTING, "hideSpiritSceptreMessage"),
+    
     BACKPACK_STYLE_REGULAR(MessageObject.BACKPACK_STYLE, "regular"),
     BACKPACK_STYLE_COMPACT(MessageObject.BACKPACK_STYLE, "compact"),
 
