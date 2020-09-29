@@ -164,7 +164,6 @@
     "dungeonsTeammateNameOverlay": "Dungeons Teammate Name Overlay",
     "dungeonLootTracker": "Dungeon Loot Tracker",
     "dungeonLootTrackerFloor": "Dungeon Floor: %floor%",
-    "dungeonLootTrackerOnlyInDungeon": "Show dungeon loot only in dungeons",
     "dungeonFloors": {
       "auto": "Auto",
       "f1": "Floor 1",

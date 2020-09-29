@@ -159,7 +159,6 @@ public enum Message {
     SETTING_SHOW_PERSONAL_COMPACTOR_PREVIEW(MessageObject.SETTING, "showPersonalCompactorPreview"),
     SETTING_SHOW_DUNGEON_TEAMMATE_NAME_OVERLAY(MessageObject.SETTING, "dungeonsTeammateNameOverlay"),
     SETTING_DUNGEON_LOOT_TRACKER_FLOOR(MessageObject.SETTING, "dungeonLootTrackerFloor"),
-    SETTING_DUNGEON_LOOT_ONLY_IN_DUNGEONS(MessageObject.SETTING, "dungeonLootTrackerOnlyInDungeon"),
 
     BACKPACK_STYLE_REGULAR(MessageObject.BACKPACK_STYLE, "regular"),
     BACKPACK_STYLE_COMPACT(MessageObject.BACKPACK_STYLE, "compact"),

@@ -229,11 +229,7 @@ public class SettingsGui extends GuiScreen {
             closingGui = true;
             mc.displayGuiScreen(new SettingsGui(feature, page, lastPage, lastTab, settings));
             closingGui = false;
-        } else if (feature == Feature.DUNGEON_LOOT_TRACKER_DUNGEONS_ONLY && abstractButton instanceof ButtonToggle) {
-            main.getConfigValues().setDungeonLootOnlyInDungeons(!main.getConfigValues().isDungeonLootOnlyInDungeons());
-            closingGui = true;
-            mc.displayGuiScreen(new SettingsGui(feature, page, lastPage, lastTab, settings));
-            closingGui = false;
+            main.getConfigValues().saveConfig();
         }
     }
 

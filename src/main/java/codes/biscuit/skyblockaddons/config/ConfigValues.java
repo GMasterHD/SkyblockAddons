@@ -73,7 +73,7 @@ public class ConfigValues {
     private MutableObject<DiscordStatus> discordAutoDefault = new MutableObject<>(DiscordStatus.NONE);
     @Getter private List<String> discordCustomStatuses = new ArrayList<>();
     @Getter private MutableFloat mapZoom = new MutableFloat(0.18478261F); // 1.3
-    @Getter @Setter private boolean dungeonLootOnlyInDungeons = true;
+    @Getter @Setter private boolean hideWhenNotInDungeon = true;
 
     public ConfigValues(File settingsConfigFile) {
         this.settingsConfigFile = settingsConfigFile;

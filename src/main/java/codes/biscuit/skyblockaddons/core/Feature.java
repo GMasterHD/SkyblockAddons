@@ -169,9 +169,8 @@ public enum Feature {
 
     SHOW_DUNGEON_TEAMMATE_NAME_OVERLAY(140, "settings.dungeonsTeammateNameOverlay", null, false),
     
-    DUNGEON_LOOT_TRACKER(141, "settings.dungeonLootTracker", new GuiFeatureData(EnumUtils.DrawType.DUNGEON_LOOT_TRACKER, ColorCode.WHITE), false, EnumUtils.FeatureSetting.DUNGEON_LOOT_TRACKER_FLOOR, EnumUtils.FeatureSetting.DUNGEON_LOOT_ONLY_IN_DUNGEONS),
-    DUNGEON_LOOT_TRACKER_DUNGEONS_ONLY(142, null, false),
-    
+    DUNGEON_LOOT_TRACKER(141, "settings.dungeonLootTracker", new GuiFeatureData(EnumUtils.DrawType.DUNGEON_LOOT_TRACKER, ColorCode.WHITE), false, EnumUtils.FeatureSetting.DUNGEON_LOOT_TRACKER_FLOOR),
+
     WARNING_TIME(-1, Message.SETTING_WARNING_DURATION, false),
 
     WARP_ADVANCED_MODE(-1, Message.SETTING_ADVANCED_MODE, true),
@@ -206,7 +205,7 @@ public enum Feature {
             SHOW_PLAYER_HEADS_ON_MAP, SHOW_GLOWING_ITEMS_ON_ISLAND, ACTIONS_UNTIL_NEXT_LEVEL, REVENANT_COLOR_BY_RARITY,
             TARANTULA_COLOR_BY_RARITY, SVEN_COLOR_BY_RARITY, REVENANT_TEXT_MODE, TARANTULA_TEXT_MODE, SVEN_TEXT_MODE,
             DRAGON_STATS_TRACKER_COLOR_BY_RARITY, HIDE_WHEN_NOT_IN_CASTLE, HIDE_WHEN_NOT_IN_SPIDERS_DEN,
-            HIDE_WHEN_NOT_IN_CRYPTS, SHOW_PERSONAL_COMPACTOR_PREVIEW, DUNGEON_LOOT_TRACKER_DUNGEONS_ONLY);
+            HIDE_WHEN_NOT_IN_CRYPTS, SHOW_PERSONAL_COMPACTOR_PREVIEW);
 
     /**
      * Features that are considered gui ones. This is used for examnple when saving the config to ensure that these features'

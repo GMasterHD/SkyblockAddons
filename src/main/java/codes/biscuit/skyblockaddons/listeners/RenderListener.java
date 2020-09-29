@@ -1437,6 +1437,10 @@ public class RenderListener {
     }
     
     public void drawDungeonTracker(Minecraft mc, float scale, ButtonLocation buttonLocation) {
+    	if(buttonLocation == null && main.getUtils().getLocation() != Location.DUNGEON_HUB && main.getUtils().getLocation() != Location.DUNGEON) {
+    	    return;
+	    }
+    	
         int floor = -1;
         if(SkyblockAddons.getInstance().getConfigValues().getDungeonFloor() == EnumUtils.DungeonFloor.AUTO) {
             floor = DungeonLootTracker.getInstance().getLastFloor();
