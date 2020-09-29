@@ -416,7 +416,7 @@ public class PlayerListener {
     
             // Get Dungeon Reward
             // If a chest has been opened
-            if(unformattedText.contains("Chest Reward") && !formattedText.contains(":")) {
+            if(unformattedText.contains("CHEST REWARDS") && !formattedText.contains(":")) {
                 // We are listening to the next 10 chat messages for the reward
                 chatMessageSinceChestMessage = -1;
             }
