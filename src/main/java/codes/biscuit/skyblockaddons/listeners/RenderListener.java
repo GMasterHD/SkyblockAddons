@@ -1464,6 +1464,7 @@ public class RenderListener {
         y = transformXY(y, height, scale);
     
         if(floor == 0) {
+            GlStateManager.color(1, 1, 1, 1);
             mc.getTextureManager().bindTexture(new ResourceLocation("skyblockaddons", "icons/bonzo.png"));
             main.getUtils().drawModalRectWithCustomSizedTexture(x, y, 0, 0, iconSize, iconSize, iconSize, iconSize);
     
@@ -1501,6 +1502,7 @@ public class RenderListener {
             main.getUtils().drawTextWithStyle(count, x + 19 - mc.fontRendererObj.getStringWidth(count), y + 43, main.getConfigValues().getColor(Feature.DUNGEON_LOOT_TRACKER).getRGB());
             GlStateManager.enableDepth();
         } else if(floor == 1) {
+            GlStateManager.color(1, 1, 1, 1);
             mc.getTextureManager().bindTexture(new ResourceLocation("skyblockaddons", "icons/scarf.png"));
             main.getUtils().drawModalRectWithCustomSizedTexture(x, y, 0, 0, iconSize, iconSize, iconSize, iconSize);
     
@@ -1538,6 +1540,7 @@ public class RenderListener {
             main.getUtils().drawTextWithStyle(count, x + 19 - mc.fontRendererObj.getStringWidth(count), y + 43, main.getConfigValues().getColor(Feature.DUNGEON_LOOT_TRACKER).getRGB());
             GlStateManager.enableDepth();
         } else if(floor == 2) {
+            GlStateManager.color(1, 1, 1, 1);
             mc.getTextureManager().bindTexture(new ResourceLocation("skyblockaddons", "icons/the_professor.png"));
             main.getUtils().drawModalRectWithCustomSizedTexture(x, y, 0, 0, iconSize, iconSize, iconSize, iconSize);
     
@@ -1575,6 +1578,7 @@ public class RenderListener {
             main.getUtils().drawTextWithStyle(count, x + 19 - mc.fontRendererObj.getStringWidth(count), y + 43, main.getConfigValues().getColor(Feature.DUNGEON_LOOT_TRACKER).getRGB());
             GlStateManager.enableDepth();
         } else if(floor == 3) {
+            GlStateManager.color(1, 1, 1, 1);
             mc.getTextureManager().bindTexture(new ResourceLocation("skyblockaddons", "icons/thorn.png"));
             main.getUtils().drawModalRectWithCustomSizedTexture(x, y, 0, 0, iconSize, iconSize, iconSize, iconSize);
     
@@ -1612,6 +1616,7 @@ public class RenderListener {
             main.getUtils().drawTextWithStyle(count, x + 23 - mc.fontRendererObj.getStringWidth(count), y + 20, main.getConfigValues().getColor(Feature.DUNGEON_LOOT_TRACKER).getRGB());
             GlStateManager.enableDepth();
         } else if(floor == 4) {
+            GlStateManager.color(1, 1, 1, 1);
             mc.getTextureManager().bindTexture(new ResourceLocation("skyblockaddons", "icons/livid.png"));
             main.getUtils().drawModalRectWithCustomSizedTexture(x, y, 0, 0, iconSize, iconSize, iconSize, iconSize);
     

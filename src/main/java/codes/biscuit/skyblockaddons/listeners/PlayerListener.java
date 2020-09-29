@@ -387,27 +387,27 @@ public class PlayerListener {
                 }
             }
             // Get if a floor has been completed successfully
-            if(unformattedText.contains("Bonzo") && unformattedText.contains("defeated") && !formattedText.contains(":")) {
+            if(unformattedText.contains("Bonzo") && unformattedText.contains("Defeated") && !formattedText.contains(":")) {
                 DungeonLootTracker.getInstance().getF1().completed();
                 System.out.println("Bonzo defeated! (" + DungeonLootTracker.getInstance().getF1().getKills() + " times)");
                 DungeonLootTracker.getInstance().setLastFloor(0);
                 SkyblockAddons.getInstance().getPersistentValuesManager().saveValues();
-            } else if(unformattedText.contains("Scarf") && unformattedText.contains("defeated") && !formattedText.contains(":")) {
+            } else if(unformattedText.contains("Scarf") && unformattedText.contains("Defeated") && !formattedText.contains(":")) {
                 DungeonLootTracker.getInstance().getF2().completed();
                 System.out.println("Scarf defeated! (" + DungeonLootTracker.getInstance().getF2().getKills() + " times)");
 	            DungeonLootTracker.getInstance().setLastFloor(1);
                 SkyblockAddons.getInstance().getPersistentValuesManager().saveValues();
-            } else if(unformattedText.contains("Professor") && unformattedText.contains("defeated") && !formattedText.contains(":")) {
+            } else if(unformattedText.contains("Professor") && unformattedText.contains("Defeated") && !formattedText.contains(":")) {
                 DungeonLootTracker.getInstance().getF3().completed();
                 System.out.println("The Professor defeated! (" + DungeonLootTracker.getInstance().getF3().getKills() + " times)");
                 DungeonLootTracker.getInstance().setLastFloor(2);
                 SkyblockAddons.getInstance().getPersistentValuesManager().saveValues();
-            } else if(unformattedText.contains("Thorn") && unformattedText.contains("defeated") && !formattedText.contains(":")) {
+            } else if(unformattedText.contains("Thorn") && unformattedText.contains("Defeated") && !formattedText.contains(":")) {
                 DungeonLootTracker.getInstance().getF4().completed();
                 System.out.println("Thorn defeated! (" + DungeonLootTracker.getInstance().getF4().getKills() + " times)");
                 DungeonLootTracker.getInstance().setLastFloor(3);
                 SkyblockAddons.getInstance().getPersistentValuesManager().saveValues();
-            } else if(unformattedText.contains("Livid") && unformattedText.contains("defeated") && !formattedText.contains(":")) {
+            } else if(unformattedText.contains("Livid") && unformattedText.contains("Defeated") && !formattedText.contains(":")) {
                 DungeonLootTracker.getInstance().getF5().completed();
                 System.out.println("Livid defeated! (" + DungeonLootTracker.getInstance().getF5().getKills() + " times)");
 	            DungeonLootTracker.getInstance().setLastFloor(4);
