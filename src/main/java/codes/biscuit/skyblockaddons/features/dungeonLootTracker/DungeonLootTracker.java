@@ -1,14 +1,8 @@
 package codes.biscuit.skyblockaddons.features.dungeonLootTracker;
 
 import codes.biscuit.skyblockaddons.SkyblockAddons;
-import codes.biscuit.skyblockaddons.utils.Utils;
 import lombok.Getter;
 import lombok.Setter;
-import net.minecraft.client.Minecraft;
-import net.minecraft.util.EnumChatFormatting;
-
-import java.util.*;
-import java.util.regex.Pattern;
 
 public class DungeonLootTracker {
 	@Getter private Floor f1 = new Floor();

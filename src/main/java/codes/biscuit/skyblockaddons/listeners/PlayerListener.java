@@ -437,7 +437,7 @@ public class PlayerListener {
             }
         }
     }
-
+    
     /**
      * This method is triggered by the player right-clicking on something.
      * Yes, it says it works for left-clicking blocks too but it actually doesn't, so please don't use it to detect that.
