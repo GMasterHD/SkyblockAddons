@@ -1624,7 +1624,7 @@ public class RenderListener {
             mc.getTextureManager().bindTexture(new ResourceLocation("skyblockaddons", "icons/livid.png"));
             main.getUtils().drawModalRectWithCustomSizedTexture(x, y, 0, 0, iconSize, iconSize, iconSize, iconSize);
     
-            // Render Boos with rewards
+            // Render Boss with rewards
             float currentX = 0;
             float currentY = y;
             for(DungeonLoot dl : DungeonFloor.F5.getDungeonLoot()) {
@@ -1660,7 +1660,7 @@ public class RenderListener {
         }
         
         if(buttonLocation != null) {
-            buttonLocation.checkHoveredAndDrawBox(x, x + width + 72, y, y + height, scale);
+            buttonLocation.checkHoveredAndDrawBox(x, x + width + 72, y, y + height + 3, scale);
         }
     }
     
