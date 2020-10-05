@@ -412,7 +412,7 @@ public class PlayerListener {
                 System.out.println("Livid defeated! (" + DungeonLootTracker.getInstance().getF5().getKills() + " times)");
 	            DungeonLootTracker.getInstance().setLastFloor(4);
                 SkyblockAddons.getInstance().getPersistentValuesManager().saveValues();
-            }
+            } else if(unformattedText.contains("Sadan"))
     
             // Get Dungeon Reward
             // If a chest has been opened
@@ -425,7 +425,7 @@ public class PlayerListener {
                 chatMessageSinceChestMessage++;
                 
                 for(DungeonLoot l: DungeonLootTracker.getDungeonLootList()) {
-                    if(unformattedText.toLowerCase().contains(l.getName().toLowerCase()) && !unformattedText.contains(":")) {
+                    if(unformattedText.toLowerCase().contains(l.getName().toLowerCase()) && !unformattedText.contains(":") && !unformattedText.contains("DROP")) {
                         DungeonLootTracker.getInstance().addLoot(0, l);
                     }
                 }

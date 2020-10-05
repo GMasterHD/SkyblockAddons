@@ -170,8 +170,8 @@ public enum Feature {
     SHOW_DUNGEON_TEAMMATE_NAME_OVERLAY(140, "settings.dungeonsTeammateNameOverlay", null, false),
     
     DUNGEON_LOOT_TRACKER(141, "settings.dungeonLootTracker", new GuiFeatureData(EnumUtils.DrawType.DUNGEON_LOOT_TRACKER, ColorCode.WHITE), false, EnumUtils.FeatureSetting.DUNGEON_LOOT_TRACKER_FLOOR),
-
     HIDE_SPIRIT_SCEPTRE_MESSAGE(142, Message.SETTING_HIDE_SPIRIT_SCEPTRE_MESSAGE, false),
+    REAPER_SCYTHE_MOB_HEALTH_DISPLAY(143, "settings.reaperScytheMobHealthDisplay", new GuiFeatureData(EnumUtils.DrawType.TEXT, ColorCode.WHITE), false),
     
     WARNING_TIME(-1, Message.SETTING_WARNING_DURATION, false),
 

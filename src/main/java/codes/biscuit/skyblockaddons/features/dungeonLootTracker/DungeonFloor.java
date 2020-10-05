@@ -15,7 +15,10 @@ public enum DungeonFloor {
 	F4("Thorn", "f4", DungeonLoot.SPIRIT_BONE, DungeonLoot.SPIRIT_BOW, DungeonLoot.SPIRIT_WING, DungeonLoot.SPIRIT_BOOTS,
 			DungeonLoot.FUMING_POTATO_BOOK, DungeonLoot.RECOMBOBULATOR_3000),
 	F5("Livid", "f5", DungeonLoot.ASSASSIN_HELMET, DungeonLoot.ASSASSIN_CHESTPLATE, DungeonLoot.ASSASSIN_LEGGINGS, DungeonLoot.ASSASSIN_BOOTS,
-			DungeonLoot.LIVID_DAGGER, DungeonLoot.LAST_BREATH, DungeonLoot.SHADOW_FURY, DungeonLoot.WARPED_STONE,
+			DungeonLoot.LIVID_DAGGER, DungeonLoot.LAST_BREATH, DungeonLoot.SHADOW_FURY, DungeonLoot.WARPED_STONE, DungeonLoot.DARK_ORB,
+			DungeonLoot.FUMING_POTATO_BOOK, DungeonLoot.RECOMBOBULATOR_3000),
+	F6("Sadan", "f6", DungeonLoot.NECROMANCER_LORD_HELMET, DungeonLoot.NECROMANCER_LORD_CHESTPLATE, DungeonLoot.NECROMANCER_LORD_LEGGINGS, DungeonLoot.NECROMANCER_LORD_BOOTS,
+			DungeonLoot.GIANT_SWORD, DungeonLoot.GIANT_TOOTH, DungeonLoot.PRECURSOR_EYE,
 			DungeonLoot.FUMING_POTATO_BOOK, DungeonLoot.RECOMBOBULATOR_3000)
 	;
 	

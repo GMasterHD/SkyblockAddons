@@ -149,7 +149,8 @@ public class EnumUtils {
         F2(Message.DUNGEON_LOOT_TRACKER_F2),
         F3(Message.DUNGEON_LOOT_TRACKER_F3),
         F4(Message.DUNGEON_LOOT_TRACKER_F4),
-        F5(Message.DUNGEON_LOOT_TRACKER_F5);
+        F5(Message.DUNGEON_LOOT_TRACKER_F5),
+        F6(Message.DUNGEON_LOOT_TRACKER_F6);
     
         private Message message;
     

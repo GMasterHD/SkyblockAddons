@@ -42,10 +42,20 @@ public enum DungeonLoot {
 	LAST_BREATH("Last Breath", "LAST_BREATH", ItemRarity.LEGENDARY, Items.bow),
 	SHADOW_FURY("Shadow Fury", "SHADOW_FURY", ItemRarity.LEGENDARY, Items.diamond_sword),
 	WARPED_STONE("Warped Stone", "AOTE_STONE", ItemRarity.RARE, "8fa8272c-7171-3ff6-a997-b46ed76a3bf7", "5cb7c21cc43dc17678ee6f16591ffaab1f637c37f4f6bbd8cea497451d76db6d"),
+	DARK_ORB("Dark Orb", "DARK_ORB", ItemRarity.RARE, "c19351fb-6283-306e-98cc-87f1cc6e5845", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvOTdjNDAzNmY4MGJmMzYwOTE4MGM3YzRhOTU2ODg1M2ZkODE1ZjE1NGFkODQzOGI5MmYzODUxMDE5ODM1YjA3MCJ9fX0K", true),
+	
+	/* ---> Floor 6 <---*/
+	NECROMANCER_LORD_HELMET("Necromancer Lord Helmet", "NECROMANCER_LORD_HELMET", ItemRarity.LEGENDARY, "7e24c542-e7c7-3fee-94b5-415eeaf3e169", "eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvODUyZjkyNjk0YWQ4MWU2MzU4YjQzMDcyYWFlZjI1ZjhlMDA5OTE4NGJiNGM3ZmQzODhlNGFkZjcwYWNjN2UwZiJ9fX0", true),
+	NECROMANCER_LORD_CHESTPLATE("Necromancer Lord Chestplate", "NECROMANCER_LORD_CHESTPLATE", ItemRarity.LEGENDARY, Items.leather_chestplate, 0, false, 0x000000),
+	NECROMANCER_LORD_LEGGINGS("Necromancer Lord Leggings", "NECROMANCER_LORD_LEGGINGS", ItemRarity.LEGENDARY, Items.leather_leggings, 0, false, 0x370147),
+	NECROMANCER_LORD_BOOTS("Necromancer Lord Boots", "NECROMANCER_LORD_BOOTS", ItemRarity.LEGENDARY, Items.leather_boots, 0, false, 0x400352),
+	GIANT_SWORD("Giant's Sword", "GIANTS_SWOWRD", ItemRarity.LEGENDARY, Items.iron_sword),
+	GIANT_TOOTH("Giant Tooth", "GIANT_TOOTH", ItemRarity.EPIC, "371995ce-5146-4109-bfb3-465e027eae43", "f0c84320f4b0fcd8391b8a20f53bd41612ca6a50e758309525971f77ace2d"),
+	PRECURSOR_EYE("Precursor Eye", "PRECURSOR_EYE", ItemRarity.LEGENDARY, "78aecd0f-e1ad-3b10-b74f-c991afb8ea1d", "ewogICJ0aW1lc3RhbXAiIDogMTYwMTQ3OTI0MjkyNCwKICAicHJvZmlsZUlkIiA6ICI1NjY3NWIyMjMyZjA0ZWUwODkxNzllOWM5MjA2Y2ZlOCIsCiAgInByb2ZpbGVOYW1lIiA6ICJUaGVJbmRyYSIsCiAgInNpZ25hdHVyZVJlcXVpcmVkIiA6IHRydWUsCiAgInRleHR1cmVzIiA6IHsKICAgICJTS0lOIiA6IHsKICAgICAgInVybCIgOiAiaHR0cDovL3RleHR1cmVzLm1pbmVjcmFmdC5uZXQvdGV4dHVyZS83MmMwNjgzYjIwMTljYTNkMzk0NzI3M2UzOTRiZmNhMWI0ZDcxYjYxYjY3YjM5NDc0YzJkNmQ3M2E5YjY3NTA4IgogICAgfQogIH0KfQ==", true),
 	
 	/* ---> Every Floor <--- */
 	RECOMBOBULATOR_3000("Recombobulator 3000", "RECOMBOBULATOR_3000", ItemRarity.LEGENDARY, "96538e7f-6b56-3557-9b7d-458afe4239e9", "57ccd36dc8f72adcb1f8c8e61ee82cd96ead140cf2a16a1366be9b5a8e3cc3fc"),
-	FUMING_POTATO_BOOK("Fuming Potato Book", "FUMING_POTATO_BOOK", ItemRarity.EPIC, Items.book, true)
+	FUMING_POTATO_BOOK("Fuming Potato Book", "FUMING_POTATO_BOOK", ItemRarity.EPIC, Items.book, true),
 	;
 	
 	@Getter private String skyBlockID;

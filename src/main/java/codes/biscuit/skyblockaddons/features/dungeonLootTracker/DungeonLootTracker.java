@@ -1,6 +1,7 @@
 package codes.biscuit.skyblockaddons.features.dungeonLootTracker;
 
 import codes.biscuit.skyblockaddons.SkyblockAddons;
+import codes.biscuit.skyblockaddons.core.Feature;
 import lombok.Getter;
 import lombok.Setter;
 

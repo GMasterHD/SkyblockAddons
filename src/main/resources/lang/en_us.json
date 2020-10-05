@@ -170,9 +170,12 @@
       "f2": "Floor 2",
       "f3": "Floor 3",
       "f4": "Floor 4",
-      "f5": "Floor 5"
+      "f5": "Floor 5",
+      "f6": "Floor 6"
     },
-    "hideSpiritSceptreMessage": "Hide Spirit Sceptre Message"
+    "hideSpiritSceptreMessage": "Hide Spirit Sceptre Message",
+    "reaperScytheMobHealthDisplay": "Reaper Scythe Mob Health Display",
+    "customReaperScytheMobColor": "Custom Mob Health Color"
   },
   "messages": {
     "enchants": "Enchants",
