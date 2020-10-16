@@ -424,7 +424,7 @@ public class PlayerListener {
             if(chatMessageSinceChestMessage < 10) {
                 chatMessageSinceChestMessage++;
                 
-                for(DungeonLoot l: DungeonLootTracker.getDungeonLootList()) {
+                for(DungeonLoot l: DungeonLoot.values()) {
                     if(unformattedText.toLowerCase().contains(l.getName().toLowerCase()) && !unformattedText.contains(":") && !unformattedText.contains("DROP")) {
                         DungeonLootTracker.getInstance().addLoot(0, l);
                     }

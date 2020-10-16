@@ -18,7 +18,7 @@ public enum DungeonFloor {
 			DungeonLoot.LIVID_DAGGER, DungeonLoot.LAST_BREATH, DungeonLoot.SHADOW_FURY, DungeonLoot.WARPED_STONE, DungeonLoot.DARK_ORB,
 			DungeonLoot.FUMING_POTATO_BOOK, DungeonLoot.RECOMBOBULATOR_3000),
 	F6("Sadan", "f6", DungeonLoot.NECROMANCER_LORD_HELMET, DungeonLoot.NECROMANCER_LORD_CHESTPLATE, DungeonLoot.NECROMANCER_LORD_LEGGINGS, DungeonLoot.NECROMANCER_LORD_BOOTS,
-			DungeonLoot.GIANT_SWORD, DungeonLoot.GIANT_TOOTH, DungeonLoot.PRECURSOR_EYE,
+			DungeonLoot.GIANT_SWORD, DungeonLoot.GIANT_TOOTH, DungeonLoot.NECROMANCER_SWORD, DungeonLoot.PRECURSOR_EYE,
 			DungeonLoot.FUMING_POTATO_BOOK, DungeonLoot.RECOMBOBULATOR_3000)
 	;
 	

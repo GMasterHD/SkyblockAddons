@@ -11,46 +11,7 @@ public class DungeonLootTracker {
 	@Getter private Floor f3 = new Floor();
 	@Getter private Floor f4 = new Floor();
 	@Getter private Floor f5 = new Floor();
-	
-	@Getter private transient static DungeonLoot dungeonLootList[] = {
-			DungeonLoot.BONZO_MASK,
-			DungeonLoot.BONZO_STAFF,
-			DungeonLoot.RED_NOSE,
-			DungeonLoot.NECROMANCERS_BROOCH,
-			
-			DungeonLoot.RED_SCARF,
-			DungeonLoot.SCARF_STUDIES,
-			DungeonLoot.ADAPTIVE_BLADE,
-			
-			DungeonLoot.ADAPTIVE_HELMET,
-			DungeonLoot.ADAPTIVE_CHESTPLATE,
-			DungeonLoot.ADAPTIVE_LEGGINGS,
-			DungeonLoot.ADAPTIVE_BOOTS,
-			
-			DungeonLoot.SPIRIT_BONE,
-			DungeonLoot.SPIRIT_BOOTS,
-			DungeonLoot.SPIRIT_BOW,
-			DungeonLoot.SPIRIT_WING,
-			
-			DungeonLoot.ASSASSIN_BOOTS,
-			DungeonLoot.ASSASSIN_LEGGINGS,
-			DungeonLoot.ASSASSIN_CHESTPLATE,
-			DungeonLoot.ASSASSIN_HELMET,
-			DungeonLoot.LIVID_DAGGER,
-			DungeonLoot.LAST_BREATH,
-			DungeonLoot.SHADOW_FURY,
-			DungeonLoot.WARPED_STONE,
-			
-			DungeonLoot.RECOMBOBULATOR_3000,
-			DungeonLoot.FUMING_POTATO_BOOK
-	};
-	@Getter private transient static DungeonFloor dungeonFloorList[] = {
-			DungeonFloor.F1,
-			DungeonFloor.F2,
-			DungeonFloor.F3,
-			DungeonFloor.F4,
-			DungeonFloor.F5
-	};
+	@Getter private Floor f6 = new Floor();
 	
 	@Getter @Setter private int lastFloor = 0;
 	

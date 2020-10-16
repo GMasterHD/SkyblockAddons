@@ -1450,6 +1450,8 @@ public class RenderListener {
             floor = 3;
         } else if(SkyblockAddons.getInstance().getConfigValues().getDungeonFloor() == EnumUtils.DungeonFloor.F5) {
             floor = 4;
+        } else if(SkyblockAddons.getInstance().getConfigValues().getDungeonFloor() == EnumUtils.DungeonFloor.F6) {
+            floor = 5;
         }
     
         int iconSize = 48;
@@ -1651,6 +1653,44 @@ public class RenderListener {
             }
             GlStateManager.color(1, 1, 1, 1);
             String count = DungeonLootTracker.getInstance().getF5().getKills() + "";
+            main.getUtils().drawTextWithStyle(count, x + 19 - mc.fontRendererObj.getStringWidth(count), y + 43, main.getConfigValues().getColor(Feature.DUNGEON_LOOT_TRACKER).getRGB());
+            GlStateManager.enableDepth();
+        } else if(floor == 5) {
+            GlStateManager.color(1, 1, 1, 1);
+            mc.getTextureManager().bindTexture(new ResourceLocation("skyblockaddons", "icons/sadan.png"));
+            main.getUtils().drawModalRectWithCustomSizedTexture(x, y, 0, 0, iconSize, iconSize, iconSize, iconSize);
+    
+            // Render Boss with rewards
+            float currentX = 0;
+            float currentY = y;
+            for(DungeonLoot dl : DungeonFloor.F6.getDungeonLoot()) {
+                renderItem(dl.getItemStack(), x + 4 + width + currentX, currentY);
+        
+                GlStateManager.disableDepth();
+                GlStateManager.color(1, 1, 1, 1);
+        
+                int count = -1;
+                for(Loot l: DungeonLootTracker.getInstance().getF5().getLoot()) {
+                    if(l.getId().equalsIgnoreCase(dl.getSkyBlockID())) {
+                        count = l.getCount();
+                    }
+                }
+        
+                String countString = count + "";
+                if(count > 0) {
+                    main.getUtils().drawTextWithStyle(countString, x + 22 + width + currentX - mc.fontRendererObj.getStringWidth(countString), currentY + 10, dl.getRarity().getColorCode().getRGB());
+                } else {
+                    main.getUtils().drawTextWithStyle("0", x + 22 + width + currentX - mc.fontRendererObj.getStringWidth("0"), currentY + 10, dl.getRarity().getColorCode().getRGB());
+                }
+                currentX += 18;
+        
+                if(currentX > 60) {
+                    currentX = 0;
+                    currentY += 18;
+                }
+            }
+            GlStateManager.color(1, 1, 1, 1);
+            String count = DungeonLootTracker.getInstance().getF6().getKills() + "";
             main.getUtils().drawTextWithStyle(count, x + 19 - mc.fontRendererObj.getStringWidth(count), y + 43, main.getConfigValues().getColor(Feature.DUNGEON_LOOT_TRACKER).getRGB());
             GlStateManager.enableDepth();
         }

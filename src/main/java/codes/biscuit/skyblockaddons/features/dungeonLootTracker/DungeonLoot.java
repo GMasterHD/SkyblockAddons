@@ -49,6 +49,7 @@ public enum DungeonLoot {
 	NECROMANCER_LORD_CHESTPLATE("Necromancer Lord Chestplate", "NECROMANCER_LORD_CHESTPLATE", ItemRarity.LEGENDARY, Items.leather_chestplate, 0, false, 0x000000),
 	NECROMANCER_LORD_LEGGINGS("Necromancer Lord Leggings", "NECROMANCER_LORD_LEGGINGS", ItemRarity.LEGENDARY, Items.leather_leggings, 0, false, 0x370147),
 	NECROMANCER_LORD_BOOTS("Necromancer Lord Boots", "NECROMANCER_LORD_BOOTS", ItemRarity.LEGENDARY, Items.leather_boots, 0, false, 0x400352),
+	NECROMANCER_SWORD("Necromancer Sword", "NECROMANCER_SWORD", ItemRarity.LEGENDARY, Items.iron_sword, 0, false),
 	GIANT_SWORD("Giant's Sword", "GIANTS_SWOWRD", ItemRarity.LEGENDARY, Items.iron_sword),
 	GIANT_TOOTH("Giant Tooth", "GIANT_TOOTH", ItemRarity.EPIC, "371995ce-5146-4109-bfb3-465e027eae43", "f0c84320f4b0fcd8391b8a20f53bd41612ca6a50e758309525971f77ace2d"),
 	PRECURSOR_EYE("Precursor Eye", "PRECURSOR_EYE", ItemRarity.LEGENDARY, "78aecd0f-e1ad-3b10-b74f-c991afb8ea1d", "ewogICJ0aW1lc3RhbXAiIDogMTYwMTQ3OTI0MjkyNCwKICAicHJvZmlsZUlkIiA6ICI1NjY3NWIyMjMyZjA0ZWUwODkxNzllOWM5MjA2Y2ZlOCIsCiAgInByb2ZpbGVOYW1lIiA6ICJUaGVJbmRyYSIsCiAgInNpZ25hdHVyZVJlcXVpcmVkIiA6IHRydWUsCiAgInRleHR1cmVzIiA6IHsKICAgICJTS0lOIiA6IHsKICAgICAgInVybCIgOiAiaHR0cDovL3RleHR1cmVzLm1pbmVjcmFmdC5uZXQvdGV4dHVyZS83MmMwNjgzYjIwMTljYTNkMzk0NzI3M2UzOTRiZmNhMWI0ZDcxYjYxYjY3YjM5NDc0YzJkNmQ3M2E5YjY3NTA4IgogICAgfQogIH0KfQ==", true),
